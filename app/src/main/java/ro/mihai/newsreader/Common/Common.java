@@ -1,6 +1,8 @@
 package ro.mihai.newsreader.Common;
 
+import ro.mihai.newsreader.Interface.IconBetterIdeaService;
 import ro.mihai.newsreader.Interface.NewsService;
+import ro.mihai.newsreader.Remote.IconBetterIdeaClient;
 import ro.mihai.newsreader.Remote.RetrofitClient;
 
 public class Common {
@@ -9,5 +11,17 @@ public class Common {
 
     public static NewsService getNewsService(){
         return RetrofitClient.getClient(BASE_URL).create(NewsService.class);
+    }
+
+    public static IconBetterIdeaService getIconService(){
+        return IconBetterIdeaClient.getClient().create(IconBetterIdeaService.class);
+    }
+
+    public static String getApiUrl(String source, String sortBy, String apiKEY){
+        StringBuilder apiUrl = new StringBuilder("https://newsapi.org/v2/top-headlines?sources=");
+        return apiUrl.append(source)
+                .append("&apiKey=")
+                .append(API_KEY)
+                .toString();
     }
 }
